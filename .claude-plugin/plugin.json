@@ -1,0 +1,25 @@
+{
+  "name": "tdd-kit",
+  "displayName": "TDD Kit",
+  "version": "0.1.0",
+  "description": "TDD workflow skill plus a /tdd-kit:report command that runs the suite and exports results to XLSX.",
+  "author": { "name": "Vishal Parmar" },
+  "homepage": "https://github.com/VIshalSpaceov12/tdd-kit",
+  "repository": "https://github.com/VIshalSpaceov12/tdd-kit.git",
+  "keywords": ["tdd", "testing", "xlsx", "report", "workflow"],
+  "userConfig": {
+    "xlsx_output_dir": {
+      "type": "directory",
+      "title": "XLSX output directory",
+      "description": "Where test-result reports are written.",
+      "default": "./test-reports",
+      "required": false
+    },
+    "auto_report": {
+      "type": "boolean",
+      "title": "Auto-export on Stop",
+      "description": "Regenerate the XLSX automatically when Claude finishes. Off by default.",
+      "default": false
+    }
+  }
+}
