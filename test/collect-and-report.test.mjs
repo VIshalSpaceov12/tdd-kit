@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import * as XLSX from 'xlsx';
-import { collectAndReport } from '../scripts/collect-and-report.mjs';
+import { collectAndReport, invokedAsScript } from '../scripts/collect-and-report.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const tmp = mkdtempSync(join(tmpdir(), 'tdd-kit-'));
@@ -38,5 +38,26 @@ describe('collectAndReport', () => {
     await expect(
       collectAndReport({ inputs: [], out: tmp, timestamp: '2026-06-13T10:00:00.000Z' }),
     ).rejects.toThrow(/no test output/i);
+  });
+});
+
+describe('invokedAsScript', () => {
+  // Simulates macOS /tmp -> /private/tmp: both paths resolve to the same real file.
+  const symlinkRealpath = (p) => p.replace(/^\/tmp\//, '/private/tmp/');
+
+  it('is true when argv[1] and the script URL resolve to the same real path through a symlink', () => {
+    expect(
+      invokedAsScript('/private/tmp/x.mjs', 'file:///tmp/x.mjs', symlinkRealpath),
+    ).toBe(true);
+  });
+
+  it('is false when argv[1] points at a different file', () => {
+    expect(
+      invokedAsScript('/private/tmp/other.mjs', 'file:///tmp/x.mjs', symlinkRealpath),
+    ).toBe(false);
+  });
+
+  it('is false when argv[1] is undefined (module imported, not run)', () => {
+    expect(invokedAsScript(undefined, 'file:///tmp/x.mjs', symlinkRealpath)).toBe(false);
   });
 });

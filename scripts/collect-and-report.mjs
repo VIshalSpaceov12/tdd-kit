@@ -1,4 +1,4 @@
-import { readFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, mkdirSync, realpathSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { fileURLToPath } from 'node:url';
@@ -58,7 +58,18 @@ function parseCli(argv) {
   return { inputs, out: values.out ?? './test-reports', timestamp: values.timestamp };
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+// Resolve symlinks on both sides — e.g. macOS /tmp -> /private/tmp, or a plugin
+// cache dir reached through a symlink — so the CLI still runs as `main`.
+export function invokedAsScript(argv1, scriptUrl, realpath = realpathSync) {
+  if (!argv1) return false;
+  try {
+    return realpath(argv1) === realpath(fileURLToPath(scriptUrl));
+  } catch {
+    return false;
+  }
+}
+
+if (invokedAsScript(process.argv[1], import.meta.url)) {
   const opts = parseCli(process.argv.slice(2));
   if (!opts.timestamp) opts.timestamp = new Date().toISOString();
   collectAndReport(opts)
