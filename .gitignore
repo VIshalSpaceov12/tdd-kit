@@ -1,3 +1,4 @@
 node_modules/
 test-reports/
 *.xlsx
+.DS_Store
