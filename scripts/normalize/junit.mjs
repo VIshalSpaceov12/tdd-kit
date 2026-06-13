@@ -1,4 +1,4 @@
-import { XMLParser } from 'fast-xml-parser';
+import { XMLParser } from '../deps.mjs';
 
 const toArray = (value) => (value === undefined ? [] : Array.isArray(value) ? value : [value]);
 

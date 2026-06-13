@@ -29,4 +29,6 @@ Run the project's tests with machine-readable output, then export a two-sheet XL
 
 ## Notes
 - Native JSON needs no new project dependencies. JUnit XML for Jest requires the `jest-junit` devDep.
-- The engine's deps live in the plugin's own `node_modules`; run `npm install` in the plugin root once.
+- The engine's deps (`xlsx`, `fast-xml-parser`) are bootstrapped automatically: a SessionStart hook
+  installs them into `${CLAUDE_PLUGIN_DATA}` on first run after a marketplace install. In
+  `--plugin-dir` dev mode they resolve from the plugin's own `node_modules`. No manual step.

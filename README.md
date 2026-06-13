@@ -6,12 +6,24 @@ runner that emits JUnit XML.
 
 ## Install
 
+**Permanent install (all projects).** Marketplace install copies the plugin to a cache dir; a
+SessionStart hook then installs the engine's deps (`xlsx`, `fast-xml-parser`) into the plugin's
+persistent data dir on first run — no manual `npm install` needed.
+
+```bash
+claude plugin marketplace add VIshalSpaceov12/tdd-kit   # or a local path
+claude plugin install tdd-kit
+```
+
+**Dev / try-it-in-place (single session).** Loads the repo directly, using its own `node_modules`:
+
 ```bash
 git clone https://github.com/VIshalSpaceov12/tdd-kit.git ~/Documents/Projects/tdd-kit
 cd ~/Documents/Projects/tdd-kit && npm install
-claude plugin marketplace add ~/Documents/Projects/tdd-kit
-claude plugin install tdd-kit
+claude --plugin-dir ~/Documents/Projects/tdd-kit
 ```
+
+After editing the plugin, run `/reload-plugins`; inspect with `/plugin`.
 
 ## Use
 

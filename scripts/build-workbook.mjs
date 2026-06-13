@@ -1,4 +1,4 @@
-import * as XLSX from 'xlsx';
+import { XLSX } from './deps.mjs';
 
 function passRate(totals) {
   if (totals.total === 0) return '0%';
