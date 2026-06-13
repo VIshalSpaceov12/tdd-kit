@@ -1,0 +1,16 @@
+{
+  "numTotalTests": 2,
+  "numPassedTests": 1,
+  "numFailedTests": 1,
+  "numPendingTests": 0,
+  "testResults": [
+    {
+      "name": "/repo/packages/tokens/src/theme.test.ts",
+      "status": "failed",
+      "assertionResults": [
+        { "ancestorTitles": ["theme"], "title": "resolves primary", "status": "passed", "duration": 5, "failureMessages": [] },
+        { "ancestorTitles": ["theme"], "title": "throws on missing token", "status": "failed", "duration": 7, "failureMessages": ["Error: missing color.danger"] }
+      ]
+    }
+  ]
+}

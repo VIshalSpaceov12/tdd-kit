@@ -1,0 +1,17 @@
+{
+  "name": "tdd-kit-scripts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "XLSX test-report engine for the tdd-kit Claude Code plugin",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.4.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.0"
+  }
+}

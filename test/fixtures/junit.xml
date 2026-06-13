@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="vitest" tests="3" failures="1" skipped="1" time="0.030">
+  <testsuite name="math.test.ts" file="src/math.test.ts" tests="3" failures="1" skipped="1" time="0.030">
+    <testcase classname="src/math.test.ts" name="adds" time="0.010"/>
+    <testcase classname="src/math.test.ts" name="subtracts" time="0.020">
+      <failure message="expected 1 to be 2">AssertionError: expected 1 to be 2</failure>
+    </testcase>
+    <testcase classname="src/math.test.ts" name="divides" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,9 @@
+{
+  "name": "tdd-kit-runtime",
+  "private": true,
+  "description": "Runtime-only deps the SessionStart hook installs into ${CLAUDE_PLUGIN_DATA}. Keep in sync with the dependencies block of ../package.json.",
+  "dependencies": {
+    "fast-xml-parser": "^4.4.1",
+    "xlsx": "^0.18.5"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/bootstrap-deps.sh\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/auto-report.sh\" \"${CLAUDE_PLUGIN_OPTION_XLSX_OUTPUT_DIR:-./test-reports}\" \"${CLAUDE_PLUGIN_OPTION_AUTO_REPORT:-false}\""
+          }
+        ]
+      }
+    ]
+  }
+}
